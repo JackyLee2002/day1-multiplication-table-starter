@@ -32,4 +32,16 @@ public class MultiplicationTableBuilder {
     public Boolean isStartNotBiggerThanEnd (int start, int end) {
         return start <= end ? true : null;
     }
+
+    public String createFormattedMultiplicationTableString (int start, int end) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = start; i <= end; i++) { // generate line with line break
+            for (int j = start; j <= i; j++) { // generate multiplication expression with space
+                stringBuilder.append(String.format("%d*%d=%d", j, i, j*i));
+                if (j != i) stringBuilder.append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }

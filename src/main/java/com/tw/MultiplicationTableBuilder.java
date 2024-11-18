@@ -13,12 +13,12 @@ public class MultiplicationTableBuilder {
     }
 
     public String generateMultiplicationTable(int start, int end) {
-        Boolean isStartNoBiggerThanEnd = isStartNotBiggerThanEnd(start, end);
+        Boolean isStartNotBiggerThanEnd = isStartNotBiggerThanEnd(start, end);
         Boolean areNumbersWithinRange = areNumbersWithinRange(start, end);
-        if (isStartNoBiggerThanEnd == null || areNumbersWithinRange == null) {
+        if (isStartNotBiggerThanEnd == null || areNumbersWithinRange == null) {
             return null;
         }
-        if (isStartNoBiggerThanEnd && areNumbersWithinRange) {
+        if (isStartNotBiggerThanEnd && areNumbersWithinRange) {
             return createFormattedMultiplicationTableString(start, end);
         } else {
             return null;
@@ -33,15 +33,12 @@ public class MultiplicationTableBuilder {
         return start <= end ? true : null;
     }
 
-    public String createFormattedMultiplicationTableString (int start, int end) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = start; i <= end; i++) { // generate line with line break
-            for (int j = start; j <= i; j++) { // generate multiplication expression with space
-                stringBuilder.append(String.format("%d*%d=%d", j, i, j*i));
-                if (j != i) stringBuilder.append(" ");
-            }
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
+    public String createFormattedMultiplicationTableString(int start, int end) {
+        return java.util.stream.IntStream.rangeClosed(start, end)
+                .mapToObj(
+                        i -> java.util.stream.IntStream.rangeClosed(start, i)
+                        .mapToObj(j -> String.format("%d*%d=%d", j, i, j * i))
+                        .collect(java.util.stream.Collectors.joining(" ")))
+                .collect(java.util.stream.Collectors.joining("\n")) + "\n";
     }
 }

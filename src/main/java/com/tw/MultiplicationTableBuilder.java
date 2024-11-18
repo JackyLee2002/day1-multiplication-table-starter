@@ -19,8 +19,7 @@ public class MultiplicationTableBuilder {
             return null;
         }
         if (isStartNoBiggerThanEnd && areNumbersWithinRange) {
-            String formattedMultiplicationTable =  createFormattedMultiplicationTableString(start, end);
-            return formattedMultiplicationTable;
+            return createFormattedMultiplicationTableString(start, end);
         } else {
             return null;
         }

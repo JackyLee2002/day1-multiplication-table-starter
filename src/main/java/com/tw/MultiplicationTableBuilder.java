@@ -6,6 +6,7 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
+
         String formattedMultiplicationTable = builder.generateMultiplicationTable(start, end);
 
         System.out.println(formattedMultiplicationTable);
@@ -26,7 +27,7 @@ public class MultiplicationTableBuilder {
     }
 
     public Boolean areNumbersWithinRange (int start, int end)  {
-        return (1 <= start && start <= 1000) && (1 <= end && end <= 1000) ? true : null;
+        return (1 < start && start <= 1000) && (1 < end && end <= 1000) ? true : null;
     }
 
     public Boolean isStartNotBiggerThanEnd (int start, int end) {

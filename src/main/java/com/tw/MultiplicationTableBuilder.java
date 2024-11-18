@@ -6,13 +6,23 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        String multiplicationTable = builder.build(start, end);
+        String formattedMultiplicationTable = builder.generateMultiplicationTable(start, end);
 
-        System.out.println(multiplicationTable);
+        System.out.println(formattedMultiplicationTable);
     }
 
-    public String build(int start, int end) {
-        return "";
+    public String generateMultiplicationTable(int start, int end) {
+        Boolean isStartNoBiggerThanEnd = isStartNotBiggerThanEnd(start, end);
+        Boolean areNumbersWithinRange = areNumbersWithinRange(start, end);
+        if (isStartNoBiggerThanEnd == null || areNumbersWithinRange == null) {
+            return null;
+        }
+        if (isStartNoBiggerThanEnd && areNumbersWithinRange) {
+            String formattedMultiplicationTable =  createFormattedMultiplicationTableString(start, end);
+            return formattedMultiplicationTable;
+        } else {
+            return null;
+        }
     }
 
     public Boolean areNumbersWithinRange (int start, int end)  {

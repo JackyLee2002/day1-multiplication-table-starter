@@ -14,4 +14,8 @@ public class MultiplicationTableBuilder {
     public String build(int start, int end) {
         return "";
     }
+
+    public Boolean areNumbersWithinRange (int start, int end)  {
+        return (1 <= start && start <= 1000) && (1 <= end && end <= 1000) ? true : null;
+    }
 }
